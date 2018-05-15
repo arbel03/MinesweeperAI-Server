@@ -29,6 +29,6 @@ o = softmax((net.LW{2} * (tansig((net.IW{1} * data) + net.b{1}))) + net.b{2});
 test_ptzatza = [ 0 0 0 1 -1 0 1 1 1 -1 2 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1]';
 test_no_ptzatza = [-1 -1 1 0 0 2 2 2 1 0 0 1 -1 1 0 0 1 1 1 0 0 0 0 0 0]';
 
-layer_1_resaults = tansig((net.IW{1} * test_no_ptzatza) + net.b{1});
+layer_1_resaults = tansig((net.IW{1} * test_ptzatza) + net.b{1});
 layer_2_resaults = softmax((net.LW{2} * layer_1_resaults) + net.b{2})
 

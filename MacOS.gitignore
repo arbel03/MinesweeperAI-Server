@@ -1,0 +1,9 @@
+
+# Mac OS problems
+.DS_Store
+
+# Ignore xCode project file
+Weights1.csv
+Weights2.csv
+Biases1.csv
+Biases2.csv

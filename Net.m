@@ -1,3 +1,4 @@
+function out = Net ()
 run('./DataManipulation/Data.m')
 rng('shuffle');
 
@@ -16,6 +17,7 @@ net.divideParam.testInd = te;
 
 [net, traind] = train(net, P, t);
 
+% Plot net resaults.
 hold on
 plot (1:length(traind.perf), traind.perf)
 plot (1:length(traind.vperf), traind.vperf)
@@ -24,11 +26,11 @@ legend('Train', 'Perform', 'Validate')
 data = P(:, te);
 targets = t(:,te);
 
-o = softmax((net.LW{2} * (tansig((net.IW{1} * data) + net.b{1}))) + net.b{2});
+% Pass comunication parameters to server view corresponding files.
+csvwrite('Weights1.csv',net.IW{1});
+csvwrite('Weights2.csv',net.LW{2});
+csvwrite('Biases1.csv',net.b{1});
+csvwrite('Biases2.csv',net.b{2});
 
-test_ptzatza = [ 0 0 0 1 -1 0 1 1 1 -1 2 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1]';
-test_no_ptzatza = [-1 -1 1 0 0 2 2 2 1 0 0 1 -1 1 0 0 1 1 1 0 0 0 0 0 0]';
-
-layer_1_resaults = tansig((net.IW{1} * test_ptzatza) + net.b{1});
-layer_2_resaults = softmax((net.LW{2} * layer_1_resaults) + net.b{2})
-
+out = 0
+end

@@ -11,6 +11,7 @@ with open('parsed_data.txt', 'w') as out:
                 out_l += ' '.join([str(i) for i in vec]) + ' '
             out_l += '], ' + str(target) + '}'
 
-            output_strings.append(out_l)
+            if not out_l in output_strings:
+                output_strings.append(out_l)
     
     out.write('\n'.join(output_strings))

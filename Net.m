@@ -2,7 +2,7 @@ function out = Net ()
 run('./DataManipulation/Data.m')
 rng('shuffle');
 
-net = patternnet(20);
+net = patternnet(28);
 net.trainParam.showWindow = 0;
 % No feature normalization in input
 net.inputs{1}.processFcns = {};
@@ -14,6 +14,7 @@ net.divideFcn = 'divideind';
 net.divideParam.trainInd = tr;
 net.divideParam.valInd = va;
 net.divideParam.testInd = te;
+
 
 [net, traind] = train(net, P, t);
 
@@ -34,3 +35,14 @@ csvwrite('Biases2.csv',net.b{2});
 
 out = 0
 end
+
+function [ NormalizedData ] = FeatureNormalization(InputData, NormalizedIndexes)
+%FeatureNormalization This function normalizes data, this function receives
+%a vector of indexes it should use for normalizing.
+NormalizedPopulation = InputData(:,NormalizedIndexes);
+NormalizedMean = mean(NormalizedPopulation');
+NormalizedRange = max(NormalizedPopulation') - min(NormalizedPopulation');
+NormalizedData = (InputData-NormalizedMean')./NormalizedRange';
+end
+
+

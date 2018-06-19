@@ -43,9 +43,10 @@ class KodeFunHTTPRequestHandler(BaseHTTPRequestHandler):
         postvars = str(cgi.parse_qs(self.rfile.read(length), keep_blank_values=1))
         input = eval('[' + find_between(postvars, '[', ']') + ']')
 
+        print numpy.array(input)
         output = calc_for(numpy.array(input))
         
-        resp = '{BombChance: ' + str([e[0] for e in output])+ '}'
+        resp = '{\"BombChance\": ' + str([e[0] for e in output])+ '}'
 
         #send code 200 response
         self.send_response(200)
@@ -92,7 +93,6 @@ def parse_biases():
   return biases
 
 def calc_for(input):
-
   #input = numpy.array([ 0, 0, 0, 1, -1, 0, 1, 1, 1, -1, 2, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1])
   weights = parse_weights()
   biases = parse_biases()

@@ -5,8 +5,7 @@ t = [];
 
 while 1
     
-    try
-        
+    try       
         tline = fgetl(file);
         c = eval(tline);
         P = [P, c{1}'];
@@ -15,18 +14,14 @@ while 1
         else
             t = [t, [1;0]];
         end
+        cnt = cnt + 1;  
         
-
-        cnt = cnt + 1;
-    
     catch 
         clear c
         clear tline
         clear cnt
         clear file
         clear exception
-        break
-       
+        break      
     end
-
 end

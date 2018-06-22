@@ -14,4 +14,5 @@ with open('parsed_data.txt', 'w') as out:
             if not out_l in output_strings:
                 output_strings.append(out_l)
     
-    out.write('\n'.join(output_strings))
+    print [int(s[-2]) for s in output_strings]
+    out.write('\n'.join(sorted(output_strings, key=lambda s: int(s[-2]))))

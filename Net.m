@@ -1,14 +1,16 @@
 function out = Net ()
-run('./DataManipulation/Data.m')
+%run('./DataManipulation/Data.m')
 rng('shuffle');
+load('SortedData.mat')
 
-net = patternnet(28);
-net.trainParam.showWindow = 0;
+net = patternnet(36);
+net.trainParam.showWindow = 1;
 % No feature normalization in input
 net.inputs{1}.processFcns = {};
 % No feature normalization in output:
 net.outputs{2}.processFcns = {};
 net.divideFcn = 'divideind';
+net.trainParam.max_fail = 15;
 
 [tr, va, te] = GetIndices(size(P, 2), size(t,1)); 
 net.divideParam.trainInd = tr;

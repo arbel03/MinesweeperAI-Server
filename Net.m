@@ -3,7 +3,7 @@ function out = Net ()
 rng('shuffle');
 load('SortedData.mat')
 
-net = patternnet(36);
+net = patternnet(28);
 net.trainParam.showWindow = 1;
 % No feature normalization in input
 net.inputs{1}.processFcns = {};

@@ -93,7 +93,7 @@ def parse_biases():
   return biases
 
 def calc_for(input):
-  #input = numpy.array([ 0, 0, 0, 1, -1, 0, 1, 1, 1, -1, 2, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1])
+
   weights = parse_weights()
   biases = parse_biases()
   
